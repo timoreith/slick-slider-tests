@@ -78,7 +78,39 @@
 	        <h1>Test 1</h1>
 	        <p>Twig</p>
 
-			{% set options = { "arrows": true, "slidesToShow": 3, "slidesToScroll": 1, "dots": true, "centerMode": true, "centerPadding": "60px", "speed": 1000 } %}
+{% set arrows = "1" %}
+{% set accessibility = "0" %}
+{% set adaptiveHeight = "1" %}
+{% set centerMode = "1" %}
+{% set dots = "1" %}
+{% set slidesToShow = 3 %}
+{% set slidesToScroll = 1 %}
+{% set speed = 400 %}
+{% set centerPadding = "60px" %}
+
+{% set options = {} %}
+
+{% set options_boolean = [ "accessibility", "adaptiveHeight", "autoplay", "centerMode", "dots", "draggable", "fade", "arrows", "mobileFirst", "infinite", "pauseOnFocus", "pauseOnHover", "pauseOnDotsHover", "swipe", "swipeToSlide", "touchMove", "useCSS", "useTransform", "variableWidth", "vertical", "verticalSwiping", "rtl", "waitForAnimate" ] %}
+{% set options_number = [ "autoplaySpeed", "edgeFriction", "initialSlide", "rows", "slidesPerRow", "slidesToShow", "slidesToScroll", "speed", "touchThreshold" ] %}
+{% set options_string = [ "centerPadding", "cssEase", "dotsClass", "easing", "appendArrows", "appendDots", "prevArrow", "nextArrow", "lazyLoad", "respondTo", "slide" ] %}
+
+{% for opt in options_boolean %}
+    {% if _context[opt] is defined %}
+    	{% if _context[opt]|trim == true and _context[opt]|trim != "false" and _context[opt]|trim != "no" %}{% set v = true %}{% else %}{% set v = false %}{% endif %}
+    	{% set options = options|merge({ (opt) : v }) %}
+    {% endif %}
+{% endfor %}
+{% for opt in options_number %}
+    {% if _context[opt] is defined and (_context[opt]|trim matches '/^\\d+$/' or _context[opt]|trim matches '/^[-+]?[0-9]*\\.?[0-9]+$/') %}
+    	{% set options = options|merge({ (opt) : (_context[opt]|trim*1) }) %}
+    {% endif %}
+{% endfor %}
+{% for opt in options_string %}
+    {% if _context[opt] is defined %}
+    	{% set options = options|merge({ (opt) : (_context[opt]|trim) }) %}
+    {% endif %}
+{% endfor %}
+
 	        <div class="carousel" data-slick='{{ options|json_encode() }}'>
 			  <div><h3>1</h3></div>
 			  <div><h3>2</h3></div>
