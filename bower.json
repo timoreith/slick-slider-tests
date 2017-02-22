@@ -1,0 +1,26 @@
+{
+  "name": "my-slick-tests",
+  "description": "slick carousel tests",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "slick"
+  ],
+  "authors": [
+    "timo"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "slick-carousel": "~1.6.0",
+    "bootstrap": "~3.3.7"
+  }
+}

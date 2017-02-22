@@ -1,0 +1,10 @@
+{
+    "require": {
+        "twig/twig": "~1"
+    },
+    "config": {
+        "preferred-install": "dist",
+        "disable-tls": true,
+        "secure-http": false
+    }    
+}
